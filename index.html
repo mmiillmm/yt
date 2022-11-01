@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <button id="hamburger"><img src="img/1024px-Hamburger_icon_white.svg.png" alt=""></button>
+        <a href="index.html"><img src="img/YouTube_Logo_2017.svg" alt=""></a>
+
+        <input type="text" placeholder="Search">
+    </nav>
+
+    <div class="video">
+        <video controls id="v" data-videoid="JYpUXXD4xgc">
+            <source src="video/Pexels Videos 2759477.mp4" type="video/mp4"/>
+        </video>    
+        <canvas id="c"></canvas>
+    </div>
+
+    <div class="sidebar">
+        <aside>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit!</p><img src="https://picsum.photos/id/684/600/400" alt="">
+        </aside>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            var v = document.getElementById('v');
+            var canvas = document.getElementById('c');
+            var context = canvas.getContext('2d');
+        
+            var cw = Math.floor(canvas.clientWidth / 100);
+            var ch = Math.floor(canvas.clientHeight / 100);
+            canvas.width = cw;
+            canvas.height = ch;
+        
+            v.addEventListener('play', function(){
+                draw(this,context,cw,ch);
+            },false);
+        
+        },false);
+        
+        function draw(v,c,w,h) {
+            if(v.paused || v.ended) return false;
+            c.drawImage(v,0,0,w,h);
+            setTimeout(draw,20,v,c,w,h);
+        }
+        </script>
+</body>
+</html>
